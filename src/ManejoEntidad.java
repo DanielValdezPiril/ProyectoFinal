@@ -81,49 +81,42 @@ public class ManejoEntidad{
 		}
 	}
 
-	public void modificarproducto(Producto c) throws Exception {
-		Producto buscar = obtenerProducto(c.getIdp());
-		if (buscar.getIdp() == 0) {
+	public void modificarEntidad (Entidad entidad) throws Exception {
+		Entidad buscar = obtenerEntidad(entidad.getId());
+		if (buscar.getId() == 0) {
 			System.out.println("El identificador no existe");
 			return;
 		} else {
-			int posicion = SIZE * (c.getIdp() - 1);
+			int posicion = SIZE * (entidad.getId() - 1);
 			archivo.seek(posicion);
-			archivo.writeInt(c.getIdp());
-			escribirString(c.getProducto());
-			escribirString(c.getcodigop());
-			escribirString(c.getpreciou());
-			System.out.println("El Producto modificado");
+			archivo.writeInt(entidad.getId());
+			escribirString(entidad.getNombre());
+			System.out.println("La edentidad se ha modificado");
 		}
 	}
 
-	public void borrarProducto(int idp) throws Exception {
-		Producto buscar = obtenerProducto(idp);
-		if (buscar.getIdp() == 0) {
+	public void borrarEntidad(int id) throws Exception {
+		Entidad buscar = obtenerEntidad(id);
+		if (buscar.getId() == 0) {
 			System.out.println("El identificador no existe");
 			return;
 		} else {
-			int posicion = SIZE * (idp - 1);
+			int posicion = SIZE * (id - 1);
 			archivo.seek(posicion);
 			archivo.writeInt(0);
 			escribirString("");
-			escribirString("");
-			escribirString("");
-			System.out.println("El Producto se elimino");
+			System.out.println("se ha eliminado la Entidad");
 		}
 	}
 
-	public void listarProducto() {
+	public void listarEntidad() {
 		try {
-			Producto c = new Producto();
+			Entidad entidad = new Entidad();
 			archivo.seek(0);
 			while (true) {
-				c.setId(archivo.readInt());
-				c.setProducto(leerString());
-				c.setcodigop(leerString());
-				c.setpreciou(leerString());
-				System.out.println(c.mostrar());
-				
+				entidad.setId(archivo.readInt());
+				entidad.setNombre(leerString());
+				System.out.println("  ");
 			}
 		} catch (EOFException e) {
 			return;
@@ -132,26 +125,5 @@ public class ManejoEntidad{
 		}
 	}
 	
-	public void listarProductoSimple() {
-		try {
-			Producto c = new Producto();
-			archivo.seek(0);
-			while (true) {
-				c.setId(archivo.readInt());
-				c.setProducto(leerString());
-				c.setcodigop(leerString());
-				c.setpreciou(leerString());
-				if (c.getIdp() != 0) {
-					System.out.println(c.mostrar());
-				}
-			}
-		} catch (EOFException e) {
-			return;
-		} catch (Exception e) {
-			System.err.println("Ocurrio un error al leer datos del archivo " + e.getMessage());
-		}
-	}
-
-
 
 }
