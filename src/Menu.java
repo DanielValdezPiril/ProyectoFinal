@@ -11,7 +11,10 @@ import java.awt.event.ActionEvent;
 public class Menu {
 
 	private JFrame frame;
-
+	public static ManejoId idEntidad;
+	public static ManejoId idAtributo;
+	public static ManejoEntidad entidades;
+	public static ManejoAtributo atributos;
 	/**
 	 * Launch the application.
 	 */
@@ -19,6 +22,16 @@ public class Menu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					entidades = new ManejoEntidad();
+					atributos = new ManejoAtributo();
+					idEntidad = new ManejoId();
+					idAtributo = new ManejoId();
+
+					entidades.abrirArchivo("entidades.data");
+					atributos.abrirArchivo("atributos.data");
+					idEntidad.abrirArchivo("identidad.data");
+					idAtributo.abrirArchivo("idatributo.data");
+
 					Menu window = new Menu();
 					window.frame.setVisible(true);
 				} catch (Exception e) {

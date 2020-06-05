@@ -3,10 +3,10 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
 
-public class ManejoEntidad{
+public class ManejoAtributo{
 
 	int cantidadCaracteres = 20;
-	public  final int SIZE = Integer.BYTES + (1 * (Character.BYTES * cantidadCaracteres));
+	public  final int SIZE = Integer.BYTES *4 + ( 1* (Character.BYTES * cantidadCaracteres));
 	RandomAccessFile archivo;
   
 	/////****************************************************************************************////
@@ -51,72 +51,86 @@ public class ManejoEntidad{
 		return idp;
 	}
 	
-	public Entidad obtenerEntidad(int idp) throws Exception {
+	public Atributo obtenerAtributo(int idp) throws Exception {
 		if (idp < 1) {
 			System.out.println("El identificador debe ser mayor a uno");
 			return null;
 		}
-		Entidad entidad = new Entidad();
+		Atributo atributo = new Atributo();
 		int posicion = SIZE * (idp - 1);
 		archivo.seek(posicion);
 		try {
-			entidad.setId(archivo.readInt());
-			entidad.setNombre(leerString());
+			atributo.setIdentidad(archivo.readInt());
+			atributo.setIdatributo(archivo.readInt());
+			atributo.setNombre(leerString());
+			atributo.setTipo(archivo.readInt());
+			atributo.setLongitud(archivo.readInt());
 		} catch (EOFException e) {
-			entidad = new Entidad();
+			atributo = new Atributo ();
 		}
-		return entidad;
+		return atributo;
 	}
 
-	public boolean agregarEntidad(Entidad entidad) throws Exception {  
-		Entidad buscar = obtenerEntidad(entidad.getId());   /// busca si ya existe una entidad 
-		if (buscar.getId() != 0) {
+	public void agregarAtributo(Atributo atributo) throws Exception {  
+		Atributo buscar = obtenerAtributo(atributo.getIdatributo());   /// busca si ya existe un atributo 
+		if (buscar.getIdatributo() != 0) {
 			System.out.println("El identificador ya existe");
-			return false;
+			return;
 		} else {
-			int posicion = SIZE * (entidad.getId() - 1);
+			int posicion = SIZE * (atributo.getIdatributo() - 1);
 			archivo.seek(posicion);
-			archivo.writeInt(entidad.getId());
-			escribirString(entidad.getNombre());    
-			return true;
+			archivo.writeInt(atributo.getIdentidad());
+			archivo.writeInt(atributo.getIdatributo());
+			escribirString(atributo.getNombre());  
+			archivo.writeInt(atributo.getTipo());
+			archivo.writeInt(atributo.getLongitud());
 		}
 	}
 
-	public void modificarEntidad (Entidad entidad) throws Exception {
-		Entidad buscar = obtenerEntidad(entidad.getId());
-		if (buscar.getId() == 0) {
+	public void modificarAtributo (Atributo atributo) throws Exception {
+		Atributo buscar = obtenerAtributo(atributo.getIdatributo());
+		if (buscar.getIdatributo() == 0) {
 			System.out.println("El identificador no existe");
 			return;
 		} else {
-			int posicion = SIZE * (entidad.getId() - 1);
+			int posicion = SIZE * (atributo.getIdatributo() - 1);
 			archivo.seek(posicion);
-			archivo.writeInt(entidad.getId());
-			escribirString(entidad.getNombre());
-			System.out.println("La edentidad se ha modificado");
+			archivo.writeInt(atributo.getIdentidad());
+			archivo.writeInt(atributo.getIdatributo());
+			escribirString(atributo.getNombre());  
+			archivo.writeInt(atributo.getTipo());
+			archivo.writeInt(atributo.getLongitud());
+			System.out.println("El atributo se ha modificado");
 		}
 	}
 
-	public void borrarEntidad(int id) throws Exception {
-		Entidad buscar = obtenerEntidad(id);
-		if (buscar.getId() == 0) {
+	public void borrarAtributo(int id) throws Exception {
+		Atributo buscar = obtenerAtributo(id);
+		if (buscar.getIdatributo() == 0) {
 			System.out.println("El identificador no existe");
 			return;
 		} else {
 			int posicion = SIZE * (id - 1);
 			archivo.seek(posicion);
 			archivo.writeInt(0);
+			archivo.writeInt(0);
 			escribirString("");
-			System.out.println("se ha eliminado la Entidad");
+			archivo.writeInt(0);
+			archivo.writeInt(0);
+			System.out.println("se ha eliminado el atributo");
 		}
 	}
 
-	public void listarEntidad() {
+	public void listarAtributo() {
 		try {
-			Entidad entidad = new Entidad();
+			Atributo atributo = new Atributo();
 			archivo.seek(0);
 			while (true) {
-				entidad.setId(archivo.readInt());
-				entidad.setNombre(leerString());
+				atributo.setIdentidad(archivo.readInt());
+				atributo.setIdatributo(archivo.readInt());
+				atributo.setNombre(leerString());
+				atributo.setTipo(archivo.readInt());
+				atributo.setLongitud(archivo.readInt());
 				System.out.println("  ");
 			}
 		} catch (EOFException e) {

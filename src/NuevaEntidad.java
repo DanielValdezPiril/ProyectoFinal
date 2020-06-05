@@ -7,12 +7,16 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NuevaEntidad extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtnombre;
 
 	/**
 	 * Create the frame.
@@ -25,18 +29,41 @@ public class NuevaEntidad extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Crear");
-		btnNewButton.setBounds(160, 108, 89, 23);
-		contentPane.add(btnNewButton);
-		
 		JLabel lblNewLabel = new JLabel("Ingresa Nueva Entidad");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel.setBounds(28, 70, 153, 23);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(191, 71, 158, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtnombre = new JTextField();
+		txtnombre.setBounds(191, 71, 158, 20);
+		contentPane.add(txtnombre);
+		txtnombre.setColumns(10);
+		
+		
+		JButton btnNewButton = new JButton("Crear");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int id = Menu.idEntidad.obtenerID();
+				
+				Entidad nuevaEntidad = new Entidad();
+				nuevaEntidad.setNombre(txtnombre.getText());
+				nuevaEntidad.setId(id);
+				try {
+					boolean resultado = Menu.entidades.agregarEntidad(nuevaEntidad);
+					Menu.idEntidad.modificarID(id+1);
+					if(resultado) {
+						JOptionPane.showMessageDialog(null, "Entidad creada");
+						txtnombre.setText("");
+					}
+					
+				}catch(Exception e) {
+					
+				}
+			}
+			
+		});
+		btnNewButton.setBounds(168, 153, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 }
