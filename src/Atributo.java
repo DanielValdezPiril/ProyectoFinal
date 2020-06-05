@@ -1,6 +1,10 @@
 
 public class Atributo {
 
+	public final int INT = 1;
+	public final int STRING = 2;
+	public final int LONG = 3;
+	
 	private int identidad;
 	private int idatributo;
 	private String nombre;

@@ -68,7 +68,21 @@ public class Menu {
 				}				
 			}
 		});
-		btnNewButton.setBounds(50, 69, 113, 28);
+		btnNewButton.setBounds(50, 69, 180, 33);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Agregar Atributos");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					CrearAtributos frame = new CrearAtributos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+			}
+		});
+		btnNewButton_1.setBounds(278, 69, 139, 33);
+		frame.getContentPane().add(btnNewButton_1);
 	}
 }

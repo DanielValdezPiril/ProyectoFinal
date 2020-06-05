@@ -1,6 +1,7 @@
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManejoEntidad{
@@ -110,20 +111,20 @@ public class ManejoEntidad{
 		}
 	}
 
-	public void listarEntidad() {
+	public ArrayList<Entidad> listarEntidad() {
+		ArrayList<Entidad> lista = new ArrayList();
 		try {
-			Entidad entidad = new Entidad();
 			archivo.seek(0);
 			while (true) {
+				Entidad entidad = new Entidad();
 				entidad.setId(archivo.readInt());
 				entidad.setNombre(leerString());
-				System.out.println("  ");
+				lista.add(entidad);
 			}
-		} catch (EOFException e) {
-			return;
 		} catch (Exception e) {
 			System.err.println("Ocurrio un error al leer datos del archivo " + e.getMessage());
 		}
+		return lista;
 	}
 	
 

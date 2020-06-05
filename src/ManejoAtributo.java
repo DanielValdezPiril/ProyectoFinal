@@ -71,11 +71,11 @@ public class ManejoAtributo{
 		return atributo;
 	}
 
-	public void agregarAtributo(Atributo atributo) throws Exception {  
+	public boolean agregarAtributo(Atributo atributo) throws Exception {  
 		Atributo buscar = obtenerAtributo(atributo.getIdatributo());   /// busca si ya existe un atributo 
 		if (buscar.getIdatributo() != 0) {
 			System.out.println("El identificador ya existe");
-			return;
+			return false;
 		} else {
 			int posicion = SIZE * (atributo.getIdatributo() - 1);
 			archivo.seek(posicion);
@@ -84,6 +84,7 @@ public class ManejoAtributo{
 			escribirString(atributo.getNombre());  
 			archivo.writeInt(atributo.getTipo());
 			archivo.writeInt(atributo.getLongitud());
+			return true;
 		}
 	}
 
