@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CrearAtributos extends JFrame {
+public class IngresarDatos extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtlongitud;
@@ -25,9 +25,9 @@ public class CrearAtributos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CrearAtributos() {
+	public IngresarDatos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 481, 300);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +66,7 @@ public class CrearAtributos extends JFrame {
 		contentPane.add(txtlongitud);
 		
 		JList listaatributos = new JList();
-		listaatributos.setBounds(267, 40, 188, 143);
+		listaatributos.setBounds(267, 40, 121, 143);
 		contentPane.add(listaatributos);
 		
 		
@@ -120,7 +120,7 @@ public class CrearAtributos extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(153, 188, 89, 23);
+		btnNewButton.setBounds(153, 189, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		

@@ -1,6 +1,7 @@
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManejoAtributo{
@@ -121,24 +122,25 @@ public class ManejoAtributo{
 			System.out.println("se ha eliminado el atributo");
 		}
 	}
-
-	public void listarAtributo() {
+	
+	public ArrayList<Atributo> listarAtributo() {
+		ArrayList<Atributo> lista = new ArrayList();
 		try {
-			Atributo atributo = new Atributo();
 			archivo.seek(0);
 			while (true) {
+				Atributo atributo = new Atributo();				
 				atributo.setIdentidad(archivo.readInt());
 				atributo.setIdatributo(archivo.readInt());
 				atributo.setNombre(leerString());
 				atributo.setTipo(archivo.readInt());
 				atributo.setLongitud(archivo.readInt());
-				System.out.println("  ");
+				lista.add(atributo);
 			}
-		} catch (EOFException e) {
-			return;
+		} catch (IOException e) {
 		} catch (Exception e) {
-			System.err.println("Ocurrio un error al leer datos del archivo " + e.getMessage());
+			System.err.println("No se pudo leer atributos" + e.getMessage());
 		}
+		return lista;
 	}
 	
 

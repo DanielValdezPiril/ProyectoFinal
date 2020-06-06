@@ -121,6 +121,7 @@ public class ManejoEntidad{
 				entidad.setNombre(leerString());
 				lista.add(entidad);
 			}
+		} catch (IOException e) {
 		} catch (Exception e) {
 			System.err.println("Ocurrio un error al leer datos del archivo " + e.getMessage());
 		}

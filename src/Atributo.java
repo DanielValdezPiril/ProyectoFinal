@@ -4,12 +4,42 @@ public class Atributo {
 	public final int INT = 1;
 	public final int STRING = 2;
 	public final int LONG = 3;
+	public final int DATE = 4;
+	public final int CHAR = 5;
+	public final int DOUBLE = 6;
 	
 	private int identidad;
 	private int idatributo;
 	private String nombre;
 	private int tipo;
 	private int longitud;
+	
+	public String obtenerTipo() {
+		switch(tipo){
+		case INT:
+			return "Integer";
+		case STRING:
+			return "String";
+		case LONG:
+			return "Long";
+		case DATE:
+			return "Date";
+		case CHAR:
+			return "Char";
+		case DOUBLE:
+			return "Double";
+		}
+		return "tipo no disponible";
+	}
+		
+	public String detalle() {
+		if(tipo==STRING) {
+			return nombre.trim()+" : " + obtenerTipo() + " : " + longitud;
+		}
+		else {
+			return nombre.trim()+" : " + obtenerTipo();
+		}
+	}
 	
 	public int getIdentidad() {
 		return identidad;
