@@ -8,11 +8,12 @@ public class ManejoDatos{
 
 	//int cantidadCaracteres = 20;
 	//public  final int SIZE = Integer.BYTES + (1 * (Character.BYTES * cantidadCaracteres));
-	RandomAccessFile archivo;
+	public RandomAccessFile archivo;
   
 	/////****************************************************************************************////
 	public void abrirArchivo(String ruta) throws Exception {
 		this.archivo = new RandomAccessFile(ruta, "rw");
+		this.archivo.seek(archivo.length());
 	}
 
 	public void cerrarArchivo() throws Exception {
@@ -20,15 +21,17 @@ public class ManejoDatos{
 			archivo.close();
 	}
 
-	private String leerString(int cantidadCaracteres) throws IOException {
+	public String leerString(int cantidadCaracteres) throws IOException {
 		char[] s = new char[cantidadCaracteres];
+		//System.out.println("--"+cantidadCaracteres);
 		for (int i = 0; i < s.length; i++) {
 			s[i] = archivo.readChar();
 		}
-		return new String(s).replace('\0', ' ');
+		//System.out.println(new String(s));
+		return new String(s).replace('\0', ' ').trim();
 	}
 
-	private void escribirString(String linea,int cantidadCaracteres) throws Exception {
+	public void escribirString(String linea,int cantidadCaracteres) throws Exception {
 		StringBuffer buffer = null;
 		if (linea != null) {
 			buffer = new StringBuffer(linea);

@@ -1,12 +1,12 @@
 
 public class Atributo {
 
-	public final int INT = 1;
-	public final int STRING = 2;
-	public final int LONG = 3;
-	public final int DATE = 4;
-	public final int CHAR = 5;
-	public final int DOUBLE = 6;
+	public static final int INT = 1;
+	public static final int STRING = 2;
+	public static final int LONG = 3;
+	public static final int DATE = 4;
+	public static final int CHAR = 5;
+	public static final int DOUBLE = 6;
 	
 	private int identidad;
 	private int idatributo;

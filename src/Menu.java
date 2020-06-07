@@ -73,7 +73,7 @@ public class Menu {
 		
 		JButton btnNewButton_1 = new JButton("Agregar Atributos");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {			//agregar atributos
 				try {
 					CrearAtributos frame = new CrearAtributos();
 					frame.setVisible(true);
@@ -84,5 +84,36 @@ public class Menu {
 		});
 		btnNewButton_1.setBounds(278, 69, 139, 33);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Ingresar Datos");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {			//agregar datos
+				try {
+					IngresarDatos frame = new IngresarDatos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+			}
+		});
+		
+		btnNewButton_2.setBounds(62, 162, 133, 33);
+		frame.getContentPane().add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Mostrar Datos");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					MostrarDato frame = new MostrarDato();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+				
+			}
+		});
+		btnNewButton_3.setBounds(61, 220, 122, 33);
+		frame.getContentPane().add(btnNewButton_3);
 	}
 }

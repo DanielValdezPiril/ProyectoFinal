@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 public class IngresarDatos extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtlongitud;
 
 	
 
@@ -32,38 +31,6 @@ public class IngresarDatos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Nombre");
-		lblNewLabel.setBounds(35, 60, 46, 14);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(35, 108, 46, 21);
-		contentPane.add(lblTipo);
-		
-		JLabel lblLongitud = new JLabel("Longitud");
-		lblLongitud.setBounds(35, 161, 46, 14);
-		contentPane.add(lblLongitud);
-		
-		JTextField txtnombre = new JTextField();
-		txtnombre.setBounds(90, 57, 86, 20);
-		contentPane.add(txtnombre);
-		txtnombre.setColumns(10);
-		
-		JComboBox txttipo = new JComboBox();
-		txttipo.setBounds(91, 108, 86, 20);
-		contentPane.add(txttipo);
-		txttipo.addItem("Integer");
-		txttipo.addItem("String");
-		txttipo.addItem("Long");
-		txttipo.addItem("Date");
-		txttipo.addItem("Char");
-		txttipo.addItem("Double");
-		
-		txtlongitud = new JTextField();
-		txtlongitud.setColumns(10);
-		txtlongitud.setBounds(90, 158, 86, 20);
-		contentPane.add(txtlongitud);
 		
 		JList listaatributos = new JList();
 		listaatributos.setBounds(267, 40, 121, 143);
@@ -85,7 +52,7 @@ public class IngresarDatos extends JFrame {
 				listaatributos.setModel(listModel);
 			}
 		});
-		list.setBounds(52, 11, 175, 21);
+		list.setBounds(34, 11, 175, 21);
 		contentPane.add(list);
 		
 		
@@ -98,29 +65,44 @@ public class IngresarDatos extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String entidadSeleccionada = list.getSelectedItem().toString().split("-")[0];
+				String nombreEntidad = list.getSelectedItem().toString().split("-")[1];
 				int idEntidad = Integer.parseInt(entidadSeleccionada);
-				int idAtributo = Menu.idAtributo.obtenerID();
-				Atributo atributo = new Atributo();
-				atributo.setIdatributo(idAtributo);
-				atributo.setIdentidad(idEntidad);
-				atributo.setNombre(txtnombre.getText());
-				atributo.setTipo(txttipo.getSelectedIndex()+1);
-				atributo.setLongitud(Integer.parseInt(txtlongitud.getText()));
+				ArrayList<Atributo> atributos = Menu.atributos.listarAtributo();
+				ManejoDatos manejo = new ManejoDatos();
 				try {
-					boolean resultado = Menu.atributos.agregarAtributo(atributo);
-					Menu.idAtributo.modificarID(idAtributo+1);
-					if(resultado) {
-						JOptionPane.showMessageDialog(null, "Atributo agregado");
-						txtnombre.setText("");
-						txtlongitud.setText("");
+					manejo.abrirArchivo(nombreEntidad.trim() + ".data");
+					for(Atributo item : atributos) {
+						if(item.getIdentidad() == idEntidad) {
+							String valor = JOptionPane.showInputDialog("Ingrese " + item.getNombre().trim() + " de tipo " + item.obtenerTipo());
+							switch(item.getTipo()) {
+								case Atributo.INT:
+									manejo.archivo.writeInt(Integer.parseInt(valor));
+									break;
+								case Atributo.STRING:
+									manejo.escribirString(valor, item.getLongitud());
+									break;
+								case Atributo.LONG:
+									manejo.archivo.writeLong(Long.parseLong(valor));
+									break;
+								case Atributo.DATE:
+									manejo.escribirString(valor, 11);
+									break;
+								case Atributo.CHAR:
+									manejo.escribirString(valor, 1);
+									break;
+								case Atributo.DOUBLE:
+									manejo.archivo.writeDouble(Double.parseDouble(valor));
+									break;
+							}
+							
+						}					
 					}
-					
 				}catch(Exception e) {
 					
 				}
 			}
 		});
-		btnNewButton.setBounds(153, 189, 89, 23);
+		btnNewButton.setBounds(106, 107, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		
