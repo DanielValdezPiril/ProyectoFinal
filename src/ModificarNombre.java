@@ -77,7 +77,8 @@ public class ModificarNombre extends JFrame {
 			list.addItem(item.getId()+"-"+item.getNombre());
 		}
 		
-		JButton btncambiarNombre = new JButton("CambiarNombre");
+		JButton btncambiarNombre = new JButton("Cambiar Nombre");
+		btncambiarNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btncambiarNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String idSeleccionada = list.getSelectedItem().toString().split("-")[0];
@@ -98,7 +99,7 @@ public class ModificarNombre extends JFrame {
 				
 			}
 		});
-		btncambiarNombre.setBounds(51, 107, 152, 31);
+		btncambiarNombre.setBounds(52, 116, 152, 31);
 		contentPane.add(btncambiarNombre);
 		
 		

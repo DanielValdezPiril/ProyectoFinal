@@ -61,7 +61,7 @@ public class Menu {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(0, 139, 139));
 		frame.getContentPane().setForeground(new Color(0, 191, 255));
-		frame.setBounds(100, 100, 556, 387);
+		frame.setBounds(100, 100, 607, 423);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -78,7 +78,7 @@ public class Menu {
 				}				
 			}
 		});
-		btnNewButton.setBounds(42, 69, 180, 44);
+		btnNewButton.setBounds(42, 47, 222, 44);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Agregar Atributos"); //Boton que nos permite crear los atributos para la entidad seleccionada 
@@ -95,7 +95,7 @@ public class Menu {
 				}	
 			}
 		});
-		btnNewButton_1.setBounds(288, 69, 158, 44);
+		btnNewButton_1.setBounds(342, 47, 158, 44);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Ingresar Datos"); // Boton que nos permite ingresar datos a los atributos creados
@@ -113,7 +113,7 @@ public class Menu {
 			}
 		});
 		
-		btnNewButton_2.setBounds(42, 176, 145, 39);
+		btnNewButton_2.setBounds(50, 231, 172, 44);
 		frame.getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Mostrar Datos"); // Boton para mostrar los datos ingresados por el usuario
@@ -131,10 +131,11 @@ public class Menu {
 				
 			}
 		});
-		btnNewButton_3.setBounds(42, 240, 145, 33);
+		btnNewButton_3.setBounds(312, 231, 158, 44);
 		frame.getContentPane().add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("Cambiar Nombre Entidad");
+		JButton btnNewButton_4 = new JButton("Cambiar Nombre de Entidad");
+		btnNewButton_4.setBackground(new Color(95, 158, 160));
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +147,7 @@ public class Menu {
 				}	
 			}
 		});
-		btnNewButton_4.setBounds(52, 128, 180, 23);
+		btnNewButton_4.setBounds(42, 102, 222, 54);
 		frame.getContentPane().add(btnNewButton_4);
 	}
 }

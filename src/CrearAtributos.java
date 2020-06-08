@@ -136,7 +136,9 @@ public class CrearAtributos extends JFrame {
 		btnNewButton.setBounds(80, 200, 91, 31);
 		contentPane.add(btnNewButton);
 		
-		JButton btncambiarNombre = new JButton("CambiarNombre");
+		JButton btncambiarNombre = new JButton("Cambiar Nombre");
+		btncambiarNombre.setBackground(new Color(32, 178, 170));
+		btncambiarNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btncambiarNombre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String atributoSeleccionado = listaatributos.getSelectedValue().toString().split(":")[0];
@@ -144,10 +146,12 @@ public class CrearAtributos extends JFrame {
 				Menu.atributos.cambiarNombre(idAtributo, txtnombre.getText());
 			}
 		});
-		btncambiarNombre.setBounds(36, 256, 152, 31);
+		btncambiarNombre.setBounds(36, 256, 151, 31);
 		contentPane.add(btncambiarNombre);
 		
 		JButton btncambiarTipo = new JButton("Cambiar Tipo");
+		btncambiarTipo.setBackground(new Color(32, 178, 170));
+		btncambiarTipo.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btncambiarTipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -159,7 +163,9 @@ public class CrearAtributos extends JFrame {
 		btncambiarTipo.setBounds(35, 294, 152, 31);
 		contentPane.add(btncambiarTipo);
 		
-		JButton btneliminar = new JButton("Eliminar atributo");
+		JButton btneliminar = new JButton("Eliminar Atributo");
+		btneliminar.setBackground(new Color(32, 178, 170));
+		btneliminar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btneliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String atributoSeleccionado = listaatributos.getSelectedValue().toString().split(":")[0];
@@ -168,7 +174,7 @@ public class CrearAtributos extends JFrame {
 				ManejoDatos datos = new ManejoDatos();
 				if(!datos.existe(entidadSeleccionada.trim())) {
 					Menu.atributos.eliminarAtributo(idAtributo);
-					JOptionPane.showMessageDialog(null, "seelimino atributo");
+					JOptionPane.showMessageDialog(null, "se elimino atributo");
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "No se puede cambiar nombre porque ya tiene datos");
@@ -176,7 +182,7 @@ public class CrearAtributos extends JFrame {
 				
 			}
 		});
-		btneliminar.setBounds(45, 340, 143, 23);
+		btneliminar.setBounds(35, 349, 152, 21);
 		contentPane.add(btneliminar);
 		
 		
