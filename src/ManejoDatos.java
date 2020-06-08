@@ -1,4 +1,6 @@
 import java.io.EOFException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -14,6 +16,11 @@ public class ManejoDatos{
 	public void abrirArchivo(String ruta) throws Exception {
 		this.archivo = new RandomAccessFile(ruta, "rw");
 		this.archivo.seek(archivo.length());
+	}
+	
+	public boolean existe(String ruta) {
+		File archivo = new File(ruta+".data");
+		return archivo.isFile();
 	}
 
 	public void cerrarArchivo() throws Exception {

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class MostrarDato extends JFrame {
 
@@ -37,15 +38,18 @@ public class MostrarDato extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 722, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 139, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTable table = new JTable();
-		table.setBounds(34, 106, 616, 111);
+		JTable table = new JTable(); // Jtable mostrara en una tabla toda la informacion creada
+		table.setBackground(new Color(95, 158, 160));
+		table.setBounds(25, 72, 649, 178);
 		contentPane.add(table);
 		
-		JComboBox list = new JComboBox();
+		JComboBox list = new JComboBox(); // usuario puede seleccionar las entidades que guardaron datos
+		list.setBackground(new Color(95, 158, 160));
 		list.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String entidadSeleccionada = list.getSelectedItem().toString().split("-")[0];
@@ -54,12 +58,12 @@ public class MostrarDato extends JFrame {
 				ArrayList<Atributo> atributos = Menu.atributos.listarAtributo();
 				ManejoDatos manejo = new ManejoDatos();
 				DefaultTableModel tableModel = new DefaultTableModel();
-				tableModel.addColumn("ID");
-				tableModel.addColumn("Nombre");
-				tableModel.addColumn("Color");
+				for(Atributo item : atributos) {
+					if(item.getIdentidad() == idEntidad) {
+						tableModel.addColumn(item.getNombre());
+					}
+				}
 				table.setModel(tableModel);
-				
-				
 				try {
 					manejo.abrirArchivo(nombreEntidad.trim() + ".data");
 					manejo.archivo.seek(0);

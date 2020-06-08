@@ -69,6 +69,15 @@ public class ManejoEntidad{
 		return entidad;
 	}
 
+	public boolean cambiarNombre(int id, String nombre) throws Exception {  
+		Entidad buscar = obtenerEntidad(id);   /// busca si ya existe una entidad 
+		int posicion = SIZE * (id - 1);
+		archivo.seek(posicion);
+		archivo.readInt();
+		escribirString(nombre);    
+		return true;
+	}
+	
 	public boolean agregarEntidad(Entidad entidad) throws Exception {  
 		Entidad buscar = obtenerEntidad(entidad.getId());   /// busca si ya existe una entidad 
 		if (buscar.getId() != 0) {

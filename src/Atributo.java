@@ -1,6 +1,8 @@
-
+/** Esta clase permite recibir los atributos que se ingresaran en la entidad  
+ * 
+ */
 public class Atributo {
-
+	
 	public static final int INT = 1;
 	public static final int STRING = 2;
 	public static final int LONG = 3;
@@ -34,10 +36,10 @@ public class Atributo {
 		
 	public String detalle() {
 		if(tipo==STRING) {
-			return nombre.trim()+" : " + obtenerTipo() + " : " + longitud;
+			return idatributo+":"+nombre.trim()+" : " + obtenerTipo() + " : " + longitud;
 		}
 		else {
-			return nombre.trim()+" : " + obtenerTipo();
+			return idatributo+":"+nombre.trim()+" : " + obtenerTipo();
 		}
 	}
 	

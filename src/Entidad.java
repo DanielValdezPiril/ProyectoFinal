@@ -1,4 +1,6 @@
-
+/* La clase entidad le permitira al usuario poder crear una entidad y poder almacenarla 
+ * 
+ */
 public class Entidad {
 
 	private int id;

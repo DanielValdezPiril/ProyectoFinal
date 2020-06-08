@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class NuevaEntidad extends JFrame {
 
@@ -25,22 +26,26 @@ public class NuevaEntidad extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 139, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Ingresa Nueva Entidad");
+		JLabel lblNewLabel = new JLabel("Ingresa Nueva Entidad"); //Ingresa el tipo de entidad el usuario 
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(28, 70, 153, 23);
+		lblNewLabel.setBounds(10, 61, 171, 41);
 		contentPane.add(lblNewLabel);
 		
 		txtnombre = new JTextField();
+		txtnombre.setBackground(new Color(102, 205, 170));
 		txtnombre.setBounds(191, 71, 158, 20);
 		contentPane.add(txtnombre);
 		txtnombre.setColumns(10);
 		
 		
-		JButton btnNewButton = new JButton("Crear");
+		JButton btnNewButton = new JButton("Crear"); // Boton para crear la nueva entidad
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(new Color(95, 158, 160));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -63,7 +68,7 @@ public class NuevaEntidad extends JFrame {
 			}
 			
 		});
-		btnNewButton.setBounds(168, 153, 89, 23);
+		btnNewButton.setBounds(139, 152, 98, 34);
 		contentPane.add(btnNewButton);
 	}
 }

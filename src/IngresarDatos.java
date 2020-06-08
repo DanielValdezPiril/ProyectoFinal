@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class IngresarDatos extends JFrame {
 
@@ -26,18 +28,21 @@ public class IngresarDatos extends JFrame {
 	 */
 	public IngresarDatos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 539, 461);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 139, 139));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList listaatributos = new JList();
-		listaatributos.setBounds(267, 40, 121, 143);
+		JList listaatributos = new JList(); // Se mostrara los datos ingresados 
+		listaatributos.setBackground(new Color(95, 158, 160));
+		listaatributos.setBounds(230, 11, 271, 386);
 		contentPane.add(listaatributos);
 		
 		
-		JComboBox list = new JComboBox();
+		JComboBox list = new JComboBox(); // Selecionar la entidad para ingresar los datos que desea el usuario 
+		list.setBackground(new Color(95, 158, 160));
 		list.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String entidadSeleccionada = list.getSelectedItem().toString().split("-")[0];
@@ -61,7 +66,9 @@ public class IngresarDatos extends JFrame {
 			list.addItem(item.getId()+"-"+item.getNombre());
 		} 
 		
-		JButton btnNewButton = new JButton("Crear");
+		JButton btnNewButton = new JButton("Crear"); // Boton para iniciar a ingresar los datos de la entidad 
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(new Color(95, 158, 160));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String entidadSeleccionada = list.getSelectedItem().toString().split("-")[0];
@@ -102,7 +109,7 @@ public class IngresarDatos extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(106, 107, 89, 23);
+		btnNewButton.setBounds(63, 114, 110, 49);
 		contentPane.add(btnNewButton);
 		
 		

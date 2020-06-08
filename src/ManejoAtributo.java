@@ -89,6 +89,62 @@ public class ManejoAtributo{
 		}
 	}
 
+	public Atributo cambiarNombre(int idp, String nombre)  {
+		if (idp < 1) {
+			System.out.println("El identificador debe ser mayor a uno");
+			return null;
+		}
+		Atributo atributo = new Atributo();
+		int posicion = SIZE * (idp - 1);
+		try {
+			archivo.seek(posicion);
+			archivo.readInt();
+			archivo.readInt();
+			escribirString(nombre);
+		} catch (Exception e) {
+			atributo = new Atributo ();
+		}
+		return atributo;
+	}
+	
+	public Atributo cambiarTipo(int idp, int tipo)  {
+		if (idp < 1) {
+			System.out.println("El identificador debe ser mayor a uno");
+			return null;
+		}
+		Atributo atributo = new Atributo();
+		int posicion = SIZE * (idp - 1);
+		try {
+			archivo.seek(posicion);
+			archivo.readInt();
+			archivo.readInt();
+			leerString();
+			archivo.writeInt(tipo);
+		} catch (Exception e) {
+			atributo = new Atributo ();
+		}
+		return atributo;
+	}
+	
+	
+	public Atributo eliminarAtributo(int idp)  {
+		if (idp < 1) {
+			System.out.println("El identificador debe ser mayor a uno");
+			return null;
+		}
+		Atributo atributo = new Atributo();
+		int posicion = SIZE * (idp - 1);
+		try {
+			archivo.seek(posicion);
+			archivo.writeInt(-1);
+		} catch (Exception e) {
+			atributo = new Atributo ();
+		}
+		return atributo;
+	}
+	
+	
+	/*
 	public void modificarAtributo (Atributo atributo) throws Exception {
 		Atributo buscar = obtenerAtributo(atributo.getIdatributo());
 		if (buscar.getIdatributo() == 0) {
@@ -104,8 +160,8 @@ public class ManejoAtributo{
 			archivo.writeInt(atributo.getLongitud());
 			System.out.println("El atributo se ha modificado");
 		}
-	}
-
+	}*/
+/*
 	public void borrarAtributo(int id) throws Exception {
 		Atributo buscar = obtenerAtributo(id);
 		if (buscar.getIdatributo() == 0) {
@@ -122,6 +178,7 @@ public class ManejoAtributo{
 			System.out.println("se ha eliminado el atributo");
 		}
 	}
+	*/
 	
 	public ArrayList<Atributo> listarAtributo() {
 		ArrayList<Atributo> lista = new ArrayList();
